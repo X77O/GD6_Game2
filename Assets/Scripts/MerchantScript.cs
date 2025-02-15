@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class MerchantScript : MonoBehaviour
@@ -31,15 +30,15 @@ public class MerchantScript : MonoBehaviour
 
 
         //merchant walking in and away
-        if(DayCycle.day)
+        if (DayCycle.day)
         {
             //check position, if not good move
-            if(this.transform.position.x != 3)
+            if (this.transform.position.x != 3)
             {
-                targetPosition = new Vector3(3,0,0);
+                targetPosition = new Vector3(3, 0, 0);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 1);
             }
-        
+
         }
         else
         {
@@ -52,12 +51,12 @@ public class MerchantScript : MonoBehaviour
         }
 
 
-        if(trust <= 0)
+        if (trust <= 0)
         {
             DayCycle.noTrust = true;
         }
 
-        if(trust > 100)
+        if (trust > 100)
         {
             trust = 100;
         }
@@ -66,7 +65,7 @@ public class MerchantScript : MonoBehaviour
 
     public bool EvaluateOffer(float offeredPrice)
     {
-        if(offeredPrice >= bucketPrice)
+        if (offeredPrice >= bucketPrice)
         {
             //offered price is good for the fisherman
 
@@ -81,9 +80,9 @@ public class MerchantScript : MonoBehaviour
             //offered price is not ideal for fisherman
 
             //what is the maximum price the fisherman can agree too - the bigger trust, the better
-            float trustThreshold = bucketPrice + ((float)trust/10);
+            float trustThreshold = bucketPrice + ((float)trust / 10);
 
-            if(bucketPrice + trustThreshold <= offeredPrice)
+            if (bucketPrice + trustThreshold <= offeredPrice)
             {
                 //fisherman agrees but sadly
                 trust = trust - (float)(offeredPrice - bucketPrice);
