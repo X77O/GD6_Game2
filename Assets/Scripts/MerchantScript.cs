@@ -10,6 +10,7 @@ public class MerchantScript : MonoBehaviour
     //prices that the games compares against
     float bucketPrice;
 
+    // REMOVE THIS COMMENT LATER - RAJAT
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
