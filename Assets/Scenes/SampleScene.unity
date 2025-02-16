@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bucketPrefab: {fileID: 7596283891488192163, guid: 6f37a26a3ff852648b04f7bc182cb7de, type: 3}
   spawnPoint: {fileID: 293485582}
-  bell: {fileID: 0}
+  bell: {fileID: 7503378221428741398, guid: 26a579ffd9187604b86531f51a2fb9ff, type: 3}
 --- !u!4 &293485582
 Transform:
   m_ObjectHideFlags: 0
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1d44426f4f02c4fb47b0f78872151c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bucket: {fileID: 7596283891488192163, guid: 6f37a26a3ff852648b04f7bc182cb7de, type: 3}
+  bucket: {fileID: 293485580}
 --- !u!212 &1897955121
 SpriteRenderer:
   m_ObjectHideFlags: 0
