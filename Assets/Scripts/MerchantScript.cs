@@ -10,8 +10,6 @@ public class MerchantScript : MonoBehaviour
     //prices that the games compares against
     float bucketPrice;
 
-    // REMOVE THIS COMMENT LATER - RAJAT
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,20 +32,20 @@ public class MerchantScript : MonoBehaviour
         if (DayCycle.day)
         {
             //check position, if not good move
-            if (this.transform.position.x != 3)
+            if (!(this.transform.position.x <= -2))
             {
-                targetPosition = new Vector3(3, 0, 0);
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 1);
+                targetPosition = new Vector3(-2, 0, 0);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 3);
             }
 
         }
         else
         {
             //check poisition, if not move
-            if (this.transform.position.x != -8)
+            if (!(this.transform.position.x >= 12))
             {
-                targetPosition = new Vector3(-8, 0, 0);
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 1);
+                targetPosition = new Vector3(12, 0, 0);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 3);
             }
         }
 

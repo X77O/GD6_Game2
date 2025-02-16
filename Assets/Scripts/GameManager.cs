@@ -18,7 +18,26 @@ public class GameManager : MonoBehaviour
     {
         return savedFishes;
     }
+
+
+
+    void Update()
+    {
+        IsGameOver();
+    }
+
+
+
+
+    void IsGameOver()
+    {
+        if(DayCycle.noTrust)
+        {
+            //gameover
+        }
+    }
 }
+
 
 [System.Serializable]
 public class FishData
@@ -30,3 +49,6 @@ public class FishData
         this.value = value;
     }
 }
+
+
+
