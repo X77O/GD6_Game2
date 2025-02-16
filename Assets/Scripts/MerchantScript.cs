@@ -1,14 +1,13 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MerchantScript : MonoBehaviour
 {
     //the procentage of trust that the merchat has for the player
-    float trust;
+    float trust = 50;
 
     Vector3 targetPosition;
 
-    public GameObject bucket; 
+    public GameObject bucket;
 
     //prices that the games compares against
     float bucketPrice;
@@ -30,7 +29,7 @@ public class MerchantScript : MonoBehaviour
     {
 
         //changing the time of day - DEBUG
-        if(Input.GetKeyDown(KeyCode.Space) && (this.transform.position.x == -2 || this.transform.position.x == 12))
+        if (Input.GetKeyDown(KeyCode.Space) && (this.transform.position.x == -2 || this.transform.position.x == 12))
         {
             DayCycle.day = !DayCycle.day;
         }
@@ -57,13 +56,13 @@ public class MerchantScript : MonoBehaviour
         }
 
         //merchant spawning bucket
-        if(isBucket && this.transform.position.x == -2)
+        if (isBucket && this.transform.position.x == -2)
         {
             bucket.GetComponent<BucketSpawner>().SpawnBucket();
             isBucket = true;
         }
 
-        if(this.transform.position.x == 12)
+        if (this.transform.position.x == 12)
         {
             isBucket = false;
         }
@@ -116,6 +115,11 @@ public class MerchantScript : MonoBehaviour
         }
 
 
+    }
+
+    public float GetTrust()
+    {
+        return trust;
     }
 
     public void CalculateBucketPrice()
