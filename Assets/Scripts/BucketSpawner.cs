@@ -47,7 +47,7 @@ public class BucketSpawner : MonoBehaviour
 
     IEnumerator LoadTableScene()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
 
         // Saving fish, this should work for multiple days, since we save before loading the table
         if (spawnedBucket != null)
