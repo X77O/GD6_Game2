@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MerchantScript : MonoBehaviour
 {
@@ -7,9 +8,12 @@ public class MerchantScript : MonoBehaviour
 
     Vector3 targetPosition;
 
+    public GameObject bucket; 
+
     //prices that the games compares against
     float bucketPrice;
 
+    bool isBucket = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,8 +29,11 @@ public class MerchantScript : MonoBehaviour
     void Update()
     {
 
-
-
+        //changing the time of day - DEBUG
+        if(Input.GetKeyDown(KeyCode.Space) && (this.transform.position.x == -2 || this.transform.position.x == 12))
+        {
+            DayCycle.day = !DayCycle.day;
+        }
 
         //merchant walking in and away
         if (DayCycle.day)
@@ -47,6 +54,18 @@ public class MerchantScript : MonoBehaviour
                 targetPosition = new Vector3(12, 0, 0);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 3);
             }
+        }
+
+        //merchant spawning bucket
+        if(isBucket && this.transform.position.x == -2)
+        {
+            bucket.GetComponent<BucketSpawner>().SpawnBucket();
+            isBucket = true;
+        }
+
+        if(this.transform.position.x == 12)
+        {
+            isBucket = false;
         }
 
 

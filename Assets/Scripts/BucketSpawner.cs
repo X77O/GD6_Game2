@@ -31,7 +31,7 @@ public class BucketSpawner : MonoBehaviour
         // Now this should work when day is set to true, but perhaps need to clear or destroy the previous bucket
     }
 
-    void SpawnBucket()
+    public void SpawnBucket()
     {
         GameObject bucketObject = Instantiate(bucketPrefab, spawnPoint.position, spawnPoint.rotation);
         spawnedBucket = bucketObject.GetComponent<Bucket>();
