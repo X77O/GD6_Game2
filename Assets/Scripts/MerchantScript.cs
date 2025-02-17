@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MerchantScript : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MerchantScript : MonoBehaviour
     float bucketPrice;
     bool isBucketSpawned = false;
     bool bellPressed = false;
+    public Slider coinSlider;
 
     void Update()
     {
@@ -63,8 +65,9 @@ public class MerchantScript : MonoBehaviour
         bellPressed = true;
     }
 
-    public bool EvaluateOffer(float offeredPrice)
+    public bool EvaluateOffer()
     {
+        int offeredPrice = (int)coinSlider.value;
 
         //THIS ADDED HERE
         if (bucketSpawner.GetComponent<BucketSpawner>().spawnedBucket != null)

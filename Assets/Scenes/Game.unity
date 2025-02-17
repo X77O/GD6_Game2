@@ -313,6 +313,7 @@ MonoBehaviour:
   bucketPrefab: {fileID: 7596283891488192163, guid: 6f37a26a3ff852648b04f7bc182cb7de, type: 3}
   spawnPoint: {fileID: 293485582}
   spawnedBucket: {fileID: 0}
+  totalValue: 0
 --- !u!4 &293485582
 Transform:
   m_ObjectHideFlags: 0
@@ -2689,6 +2690,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 574969760962779865, guid: e7b2a99a6fde3ce41a97acbe4ab2bca3, type: 3}
+      propertyPath: coinSlider
+      value: 
+      objectReference: {fileID: 646808645}
     - target: {fileID: 574969760962779865, guid: e7b2a99a6fde3ce41a97acbe4ab2bca3, type: 3}
       propertyPath: bucketSpawner
       value: 
