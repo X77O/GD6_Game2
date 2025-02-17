@@ -75,7 +75,14 @@ public class MerchantScript : MonoBehaviour
 
         if (offeredPrice >= bucketPrice)
         {
+            //update trust
             trust = trust + ((offeredPrice - bucketPrice) * 2);
+
+            //money gain and loss
+            DayCycle.money = DayCycle.money - (int)offeredPrice + (int)bucketPrice;
+
+            //cost of livin
+            DayCycle.money -= 10;
             return true;
         }
         else
@@ -84,12 +91,23 @@ public class MerchantScript : MonoBehaviour
 
             if (bucketPrice + trustThreshold <= offeredPrice)
             {
+                //update trust
                 trust = trust - (float)(offeredPrice - bucketPrice);
+
+                //money gain and loss
+                DayCycle.money = DayCycle.money - (int)offeredPrice + (int)bucketPrice;
+
+                //cost of livin
+                DayCycle.money -= 10;
                 return true;
             }
             else
             {
+                //update trust
                 trust = trust - ((float)(offeredPrice - bucketPrice) * 2);
+                
+                //cost of livin
+                DayCycle.money -= 10;
                 return false;
             }
         }
