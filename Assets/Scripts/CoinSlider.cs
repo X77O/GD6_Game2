@@ -9,6 +9,12 @@ public class CoinSlider : MonoBehaviour
     public Transform coinContainer;
     public float gap = 0.1f;
 
+    void Start()
+    {
+        // Set the maximum value of the slider to current money
+        coinSlider.maxValue = DayCycle.money;
+    }
+
     void Update()
     {
         foreach (Transform child in coinContainer)

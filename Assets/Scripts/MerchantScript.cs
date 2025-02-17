@@ -2,71 +2,55 @@ using UnityEngine;
 
 public class MerchantScript : MonoBehaviour
 {
-    //the procentage of trust that the merchat has for the player
     float trust = 50;
-
     Vector3 targetPosition;
-
-    public GameObject bucket;
-
-    //prices that the games compares against
+    public GameObject bucketSpawner;
     float bucketPrice;
+    bool isBucketSpawned = false;
+    bool bellPressed = false;
 
-    bool isBucket = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //CalculateBucketPrice();
-
-
-
-
+        // CalculateBucketPrice();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        //changing the time of day - DEBUG
+        // Changing the time of day - DEBUG
         if (Input.GetKeyDown(KeyCode.Space) && (this.transform.position.x == -2 || this.transform.position.x == 12))
         {
             DayCycle.day = !DayCycle.day;
         }
 
-        //merchant walking in and away
+        // Merchant walking in and away
         if (DayCycle.day)
         {
-            //check position, if not good move
+            // Check position, if not good move
             if (!(this.transform.position.x <= -2))
             {
-                targetPosition = new Vector3(-2, 0, 0);
+                targetPosition = new Vector3(-2, 0, 2);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 3);
             }
-
+            else if (!isBucketSpawned)
+            {
+                bucketSpawner.GetComponent<BucketSpawner>().SpawnBucket();
+                isBucketSpawned = true;
+            }
         }
-        else
+        else if (bellPressed) // So now the merhcant is walking away, only if the bell is pressed
         {
-            //check poisition, if not move
+            // Check position, if not move
             if (!(this.transform.position.x >= 12))
             {
-                targetPosition = new Vector3(12, 0, 0);
+                targetPosition = new Vector3(12, 0, 2);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 3);
             }
+            else
+            {
+                isBucketSpawned = false;
+                bellPressed = false;
+            }
         }
-
-        //merchant spawning bucket
-        if (isBucket && this.transform.position.x == -2)
-        {
-            bucket.GetComponent<BucketSpawner>().SpawnBucket();
-            isBucket = true;
-        }
-
-        if (this.transform.position.x == 12)
-        {
-            isBucket = false;
-        }
-
 
         if (trust <= 0)
         {
@@ -77,44 +61,35 @@ public class MerchantScript : MonoBehaviour
         {
             trust = 100;
         }
+    }
 
+    public void OnBellPressed()
+    {
+        bellPressed = true;
     }
 
     public bool EvaluateOffer(float offeredPrice)
     {
         if (offeredPrice >= bucketPrice)
         {
-            //offered price is good for the fisherman
-
-            //the difference in price is multiplied by 2 and added as trust increase
             trust = trust + ((offeredPrice - bucketPrice) * 2);
-
-            //fisherman agrees
             return true;
         }
         else
         {
-            //offered price is not ideal for fisherman
-
-            //what is the maximum price the fisherman can agree too - the bigger trust, the better
             float trustThreshold = bucketPrice + ((float)trust / 10);
 
             if (bucketPrice + trustThreshold <= offeredPrice)
             {
-                //fisherman agrees but sadly
                 trust = trust - (float)(offeredPrice - bucketPrice);
                 return true;
-
             }
             else
             {
-                //fisherman declines
                 trust = trust - ((float)(offeredPrice - bucketPrice) * 2);
                 return false;
             }
         }
-
-
     }
 
     public float GetTrust()
@@ -124,6 +99,6 @@ public class MerchantScript : MonoBehaviour
 
     public void CalculateBucketPrice()
     {
-        //calculating the bucketPrice
+        // Calculating the bucketPrice
     }
 }

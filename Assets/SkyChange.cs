@@ -7,14 +7,15 @@ public class SkyChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(DayCycle.day)
+        if (DayCycle.day)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
         }
 
-        if(!DayCycle.day)
+        if (!DayCycle.day)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
+            Debug.Log(DayCycle.day);
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
         }
     }
 }

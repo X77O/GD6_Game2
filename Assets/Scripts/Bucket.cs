@@ -7,8 +7,7 @@ public class Bucket : MonoBehaviour
     public int maxFishCount = 6;
     public Transform[] fishSlots;
 
-
-    //  Seting the fish to the bucket, and setting the value of the fish
+    // Setting the fish to the bucket, and setting the value of the fish
     public void InitializeFish()
     {
         for (int i = 0; i < maxFishCount; i++)
@@ -22,6 +21,16 @@ public class Bucket : MonoBehaviour
                 Fish fish = fishObject.GetComponent<Fish>();
                 // Fish1 = 2, Fish2 = 3, Fish3 = 4 - VALUES
                 fish.value = prefabNumber + 1;
+
+                if (prefabNumber == 1)
+                {
+                    fishObject.transform.rotation = Quaternion.Euler(0, 0, 20);
+                }
+                else
+                {
+                    fishObject.transform.rotation = Quaternion.Euler(0, 0, -20);
+                }
+
                 AddFish(fish);
             }
         }
@@ -37,7 +46,6 @@ public class Bucket : MonoBehaviour
     }
 
     // Showing only 3 fish at a time with positive z value
-
     public void UpdateVisibleFish()
     {
         for (int i = 0; i < fishList.Count; i++)
