@@ -5,6 +5,7 @@ public class BucketSpawner : MonoBehaviour
     public GameObject bucketPrefab;
     public Transform spawnPoint;
     public Bucket spawnedBucket;
+    public int totalValue = 0;
 
     public void SpawnBucket()
     {
@@ -14,7 +15,7 @@ public class BucketSpawner : MonoBehaviour
         if (spawnedBucket != null)
         {
             spawnedBucket.InitializeFish();
-            int totalValue = spawnedBucket.CalculateTotalValue();
+            totalValue = spawnedBucket.CalculateTotalValue();
             Debug.Log("Total value of the bucket: " + totalValue);
 
         }

@@ -9,11 +9,6 @@ public class MerchantScript : MonoBehaviour
     bool isBucketSpawned = false;
     bool bellPressed = false;
 
-    void Start()
-    {
-        // CalculateBucketPrice();
-    }
-
     void Update()
     {
         // Changing the time of day - DEBUG
@@ -70,6 +65,14 @@ public class MerchantScript : MonoBehaviour
 
     public bool EvaluateOffer(float offeredPrice)
     {
+
+        //THIS ADDED HERE
+        if (bucketSpawner.GetComponent<BucketSpawner>().spawnedBucket != null)
+        {    
+             bucketPrice = bucketSpawner.GetComponent<BucketSpawner>().totalValue;
+        }
+        //THIS ADDED HERE
+
         if (offeredPrice >= bucketPrice)
         {
             trust = trust + ((offeredPrice - bucketPrice) * 2);
@@ -95,10 +98,5 @@ public class MerchantScript : MonoBehaviour
     public float GetTrust()
     {
         return trust;
-    }
-
-    public void CalculateBucketPrice()
-    {
-        // Calculating the bucketPrice
     }
 }
